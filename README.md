@@ -19,12 +19,12 @@ An intelligent AI assistant that answers questions based on your local documents
 
 ---
 
-## Installation
+## Setup Instructions
 
-1. Clone the repository:
+1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/knowledge-assistant.git
+   git clone https://github.com/bantee-sharma/knowledge-assistant.git
    cd knowledge-assistant
 
 
