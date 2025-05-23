@@ -18,7 +18,7 @@ load_dotenv()
 # LLM Model
 llm = ChatGoogleGenerativeAI(model = "gemini-2.0-flash")
 
-
+# Load Documents
 def my_docs(folder_path):
     all_documents = []
     for file in Path(folder_path).glob("*"):
@@ -36,23 +36,32 @@ def my_docs(folder_path):
 
     return all_documents
 
+# Load documents from the "docs" directory
 doc = my_docs("docs")
 
+# Text splitting
 text_spiltter = RecursiveCharacterTextSplitter(chunk_size=1000,chunk_overlap=100)
 chunks = text_spiltter.split_documents(doc)
 
+# Embeddings and Vector store creation
 embeddings = HuggingFaceEmbeddings()
 vector_store = FAISS.from_documents(chunks,embeddings)
 
+#Retriever
 retriever = vector_store.as_retriever(search_type="similarity",kwargs={"k":3})
 
 # Tool Document based Question Answering
 @tool
 def doc_qa_tool(question:str)->str:
     '''Answer question from the following context'''
+
+    # Retrieve relevant document
     retriever_docs = retriever.invoke(question)
+
+    # Join all retrieved
     context = " ".join([i.page_content for i in retriever_docs])
 
+    # prompt template for answering questions using the context
     qa_prompt = PromptTemplate(
     template='''You are a helpfull AI assistant. Answer the question from the following context.
                 if context is insufficient just say, I don;t Know.
@@ -61,35 +70,40 @@ def doc_qa_tool(question:str)->str:
                 Answer: ''',
                 input_variables=["context","question"])
 
+    # Format the prompt 
     final_prompt = qa_prompt.invoke({"context":context,"question":question})
 
+    # LLM response
     result = llm.invoke(final_prompt)
     return result.content
 
 # Tool Weather Info
 @tool
 def weather(city:str)->str:
-    "Weather of the city"
+    "Provides weather information for the given city."
     return f"The current temperature in {city} is 25°C."
 
 # Tool Web Search
 search_tool = DuckDuckGoSearchRun()
 
-
+# Load a React-style prompt template for agent reasoning from LangChain Hub
 prompt = hub.pull("hwchase17/react")
 
+# Create a ReAct agent with the language model and tools
 agent = create_react_agent(
     llm=llm,
     tools=[doc_qa_tool,weather,search_tool],
     prompt=prompt
 )
 
+# Set up an executor to run the agent
 agent_executer = AgentExecutor(
     agent=agent,
     tools=[weather,doc_qa_tool,search_tool],
     verbose=True
 )
 
+# CLI
 print("Knowledge Assistant ready! Type 'exit' to quit.")
 
 while True:
@@ -98,6 +112,7 @@ while True:
         print("Exiting...")
         break
     else:
+        # Invoke the agent executor to get a response to the question
         response = agent_executer.invoke({"input":question})
         print("AI: ",response)
    
