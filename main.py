@@ -23,7 +23,7 @@ def my_docs(folder_path):
             loader = PyMuPDFLoader(str(file))
         elif file.suffix == ".txt":
             loader = TextLoader(str(file),encoding="utf-8")
-        elif file.suffix == ".docs":
+        elif file.suffix == ".docx":
             loader = UnstructuredWordDocumentLoader(str(file))
         else:
             continue
