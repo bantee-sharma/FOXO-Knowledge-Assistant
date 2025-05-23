@@ -1,3 +1,4 @@
+# Import necessary libraries
 from langchain_community.document_loaders import TextLoader,PyMuPDFLoader,UnstructuredWordDocumentLoader
 from pathlib import Path
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -11,8 +12,10 @@ from langchain.agents import create_react_agent, AgentExecutor
 from langchain import hub
 from langchain_community.tools import DuckDuckGoSearchRun
 
+# Load environment
 load_dotenv()
 
+# LLM Model
 llm = ChatGoogleGenerativeAI(model = "gemini-2.0-flash")
 
 
@@ -43,6 +46,7 @@ vector_store = FAISS.from_documents(chunks,embeddings)
 
 retriever = vector_store.as_retriever(search_type="similarity",kwargs={"k":3})
 
+# Tool Document based Question Answering
 @tool
 def doc_qa_tool(question:str)->str:
     '''Answer question from the following context'''
@@ -62,11 +66,13 @@ def doc_qa_tool(question:str)->str:
     result = llm.invoke(final_prompt)
     return result.content
 
+# Tool Weather Info
 @tool
 def weather(city:str)->str:
     "Weather of the city"
     return f"The current temperature in {city} is 25°C."
 
+# Tool Web Search
 search_tool = DuckDuckGoSearchRun()
 
 
