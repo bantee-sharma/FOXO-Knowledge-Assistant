@@ -3,6 +3,13 @@ from pathlib import Path
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
+from langchain_core.prompts import PromptTemplate
+from langchain_google_genai import ChatGoogleGenerativeAI
+from dotenv import load_dotenv
+
+load_dotenv()
+
+llm = ChatGoogleGenerativeAI(model = "gemini-2.0-flash")
 
 
 def my_docs(folder_path):
@@ -32,4 +39,37 @@ vector_store = FAISS.from_documents(chunks,embeddings)
 
 retriever = vector_store.as_retriever(search_type="similarity",kwargs={"k":3})
 
-print(retriever.invoke("What is sql"))
+def doc_qa_tool(question:str)->str:
+    '''Answer question from the following context'''
+    retriever_docs = retriever.invoke(question)
+    context = "".join([i.page_content for i in retriever_docs])
+
+    qa_prompt = PromptTemplate(
+    template='''You are a helpfull AI assistant.
+    Answer the question from the following context.
+    if context is insufficient just say, I don;t Know.
+    Context:{context}
+    Question:{question}
+    Answer: ''',
+    input_variables=["context","question"])
+
+    final_prompt = qa_prompt.invoke({"context":context,"question":question})
+
+    result = llm.invoke(final_prompt)
+    print(result.content)
+
+
+
+
+print("Knowledge Assistant ready! Type 'exit' to quit.")
+while True:
+    question = input("Ask question: ").strip()
+    if question.lower() in ["exit","quit"]:
+        print("Exiting...")
+        break
+   
+        
+        
+
+
+
