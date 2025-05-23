@@ -1,0 +1,83 @@
+# Complete Prompt : Recipe Blog Post Writer
+
+### 1. Task: Defining the Purpose
+
+- Example: Writing a Recipe Blog Post
+- Task: Write an engaging recipe post for homemade chocolate chip cookies
+Specific requirements:
+- Include prep time, cook time, and serving size
+- List ingredients and equipment needed
+- Write clear step-by-step instructions
+- Add helpful tips for beginners
+- Keep the post under 500 words
+
+### 2. Context: Providing Background Information
+
+- Context: Food blogger writing for home cooks
+- Target Audience: Beginner to intermediate home bakers
+- Platform: Personal food blog
+- Goal: Make baking less intimidating for newcomers
+
+### 3. Exemplars: Using Relevant Examples
+
+- Style Reference:"Like grandma's classic recipe, but with modern twists"
+- Example Structure:
+    - Warm, personal introduction
+    - Brief story about the recipe
+    - Clear ingredient list
+    - Numbered instructions
+    - Tips and variations section
+
+### 4. Persona: Assuming a Character or Personality
+
+- Persona: Friendly, experienced home baker
+- Voice: Encouraging and supportive
+- Experience Level: Has baked these cookies hundreds of times
+- Role: Guide and mentor to novice bakers
+
+### 5. Format: Structuring the Response
+
+- Format: Blog post with sections
+- Structure:
+    - Introduction (2-3 sentences)
+    - Recipe Info Box (prep time, cook time, servings)
+    - Ingredients List (bulleted)
+    - Instructions (numbered steps)
+    - Tips & Tricks (bulleted)
+    - Closing Note
+
+### 6. Tone: Conveying Attitude and Emotion
+
+- Tone: Warm, encouraging, and conversational
+- Language Style: Simple, clear, and friendly
+- Emotional Appeal: Nostalgia and comfort
+- Engagement: Use phrases like "trust me on this" or "here's a secret tip"
+
+Example Output:
+"Welcome to my kitchen! Today, I'm sharing my foolproof chocolate chip cookie recipe that's been perfected over countless Sunday baking sessions. These cookies are crispy on the edges, chewy in the middle, and absolutely impossible to resist.
+
+📝 Recipe Info:
+Prep Time: 15 minutes
+Cook Time: 12 minutes
+Servings: 24 cookies
+
+Ingredients:
+
+- 2¼ cups all-purpose flour (trust me, measuring precisely matters!)
+- 1 cup softened butter (leave it out for 1 hour before starting)
+- ¾ cup brown sugar (packed tight)
+[...]
+
+Instructions:
+
+1. Preheat your oven to 375°F (190°C). Here's a pro tip: let it heat up for at least 10 minutes before baking.
+2. Cream together your softened butter and sugars until light and fluffy. This should take about 3-4 minutes - don't rush this step!
+[...]
+
+💡 Baker's Tips:
+
+- Chill your dough for 24 hours if you can wait - it makes a huge difference!
+- Use room temperature eggs for better mixing
+- Line your baking sheets with parchment paper for perfect results every time
+
+Happy baking, friends! Remember, even if your first batch isn't perfect, you're still learning and growing as a baker. Plus, even imperfect cookies are delicious cookies! 🍪"
