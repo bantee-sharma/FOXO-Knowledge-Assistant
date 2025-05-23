@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from langchain.tools import tool
 from langchain.agents import create_react_agent, AgentExecutor
 from langchain import hub
+from langchain_community.tools import DuckDuckGoSearchRun
 
 load_dotenv()
 
@@ -66,17 +67,20 @@ def weather(city:str)->str:
     "Weather of the city"
     return f"The current temperature in {city} is 25°C."
 
+search_tool = DuckDuckGoSearchRun()
+
+
 prompt = hub.pull("hwchase17/react")
 
 agent = create_react_agent(
     llm=llm,
-    tools=[doc_qa_tool,weather],
+    tools=[doc_qa_tool,weather,search_tool],
     prompt=prompt
 )
 
 agent_executer = AgentExecutor(
     agent=agent,
-    tools=[weather,doc_qa_tool],
+    tools=[weather,doc_qa_tool,search_tool],
     verbose=True
 )
 
