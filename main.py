@@ -27,4 +27,9 @@ doc = my_docs("docs")
 text_spiltter = RecursiveCharacterTextSplitter(chunk_size=1000,chunk_overlap=100)
 chunks = text_spiltter.split_documents(doc)
 
-print(len(chunks))
+embeddings = HuggingFaceEmbeddings()
+vector_store = FAISS.from_documents(chunks,embeddings)
+
+retriever = vector_store.as_retriever(search_type="similarity",kwargs={"k":3})
+
+print(retriever.invoke("What is sql"))
