@@ -6,6 +6,9 @@ from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import PromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
+from langchain_community.tools import DuckDuckGoSearchRun,tool
+from langchain.agents import create_react_agent,AgentExecutor
+from langchain import hub
 
 load_dotenv()
 
@@ -38,15 +41,40 @@ vector_store = FAISS.from_documents(chunks,embeddings)
 
 retriever = vector_store.as_retriever(search_type="similarity",kwargs={"k":3})
 
+def doc_qa_tool():
+    retrieve_docs = retriever.invoke(question)
 
-qa_prompt = PromptTemplate(
+    context = "".join([i.page_content for i in retrieve_docs])
+    qa_prompt = PromptTemplate(
     template='''Yor are a helpfull AI assistant. Answer the question from the following context.
     If the answer is not present in the context, respond with: "The answer is not available in the provided context.
     Context: {context}
     Question: {question}
     Answer: ''',
-    input_variables=["context","question"]
+    input_variables=["context","question"])
+
+    finla_prompt = qa_prompt.invoke({"context":context,"question":question})
+
+    response = llm.invoke(finla_prompt)
+    return response.content
+
+prompt = hub.pull("hwchase17/react")
+
+agent = create_react_agent(
+    llm=llm,
+    tools=[doc_qa_tool],
+    prompt=prompt
 )
+
+agent_executer = AgentExecutor(
+    agent=agent,
+    tools=[doc_qa_tool],
+    verbose=True
+)
+
+
+
+
 
 print("Knowledge Assistant ready! Type 'exit' to quit.")
 
@@ -58,13 +86,8 @@ while True:
         break
     
     else:
+        res = doc_qa_tool(question)
+        print(res)
 
 
-        retrieve_docs = retriever.invoke(question)
-
-        context = "".join([i.page_content for i in retrieve_docs])
-
-        finla_prompt = qa_prompt.invoke({"context":context,"question":question})
-
-        response = llm.invoke(finla_prompt)
-        print(response.content)
+        
