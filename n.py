@@ -42,7 +42,8 @@ vector_store = FAISS.from_documents(chunks,embeddings)
 retriever = vector_store.as_retriever(search_type="similarity",kwargs={"k":3})
 
 @tool
-def doc_qa_tool(question):
+def doc_qa_tool(question:str)->str:
+    '''Answer question from the following context'''
     retrieve_docs = retriever.invoke(question)
 
     context = "".join([i.page_content for i in retrieve_docs])
