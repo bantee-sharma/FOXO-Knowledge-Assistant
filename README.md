@@ -80,5 +80,36 @@ knowledge-assistant/
 ├── requirements.txt       # Python dependencies
 └── README.md              # This file
 ```
+## Sample Questions and Responses
+```bash
+Knowledge Assistant ready! Type 'exit' to quit.
+Ask question: hii
 
 
+> Entering new AgentExecutor chain...
+This is not a question that requires the use of any tools.
+Final Answer: Hello!
+
+> Finished chain.
+AI:  {'input': 'hii', 'output': 'Hello!'}
+Ask question: what is primary key
+
+
+> Entering new AgentExecutor chain...
+This is a database concept question. I should use the doc_qa_tool to answer.
+Action: doc_qa_tool
+Action Input: what is a primary key in a database?A primary key is a field in a table that uniquely identifies each row/record in a database table. Primary keys must contain unique values and cannot have NULL values.I now know the final answer
+Final Answer: A primary key is a field in a table that uniquely identifies each row/record in a database table. Primary keys must contain unique values and cannot have NULL values.
+
+> Finished chain.
+AI:  {'input': 'what is primary key', 'output': 'A primary key is a field in a table that uniquely identifies each row/record in a database table. Primary keys must contain unique values and cannot have NULL values.'}
+Ask question: exit
+Exiting...
+```
+## Limitations and Next Steps
+
+Currently, the weather tool returns a static temperature; integrating a real weather API would improve accuracy.
+
+UI could be enhanced beyond CLI for better user experience.
+
+Add more tools like calculator or calendar for expanded capabilities.
