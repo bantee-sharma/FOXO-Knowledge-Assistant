@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from langchain_community.tools import DuckDuckGoSearchRun,tool
 from langchain.agents import create_react_agent,AgentExecutor
 from langchain import hub
+from langchain.memory import ConversationBufferMemory
 
 load_dotenv()
 
@@ -78,7 +79,8 @@ agent = create_react_agent(
 agent_executer = AgentExecutor(
     agent=agent,
     tools=[doc_qa_tool,weather,search_tool],
-    verbose=True
+    verbose=True,
+    memory=ConversationBufferMemory(memory_key="chat_history", return_messages=True)
 )
 
 
@@ -90,12 +92,14 @@ print("Knowledge Assistant ready! Type 'exit' to quit.")
 
 while True:
     question = input("Ask Question: ").strip().lower()
+    
     if question in ["exit","quit"]:
         print("Exiting the session. Thank you for using the assistant!")
         break
     
     else:
         res = agent_executer.invoke({"input" :question})
+        
         print(res)
 
 
