@@ -53,7 +53,7 @@ print("Knowledge Assistant ready! Type 'exit' to quit.")
 while True:
     question = input("Ask Question: ").strip()
     if question.lower() in ["exit","quit"]:
-        print("Exiting....")
+        print("Exiting the session. Thank you for using the assistant!")
         break
     else:
 
