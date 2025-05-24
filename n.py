@@ -50,8 +50,6 @@ qa_prompt = PromptTemplate(
 
 print("Knowledge Assistant ready! Type 'exit' to quit.")
 
-greetings = ["hi", "hello", "hey", "hii"]
-thanks = ["thank you", "thanks", "ty"]
 
 while True:
     question = input("Ask Question: ").strip().lower()
@@ -59,14 +57,6 @@ while True:
         print("Exiting the session. Thank you for using the assistant!")
         break
     
-    elif question in greetings:
-        print("Hello! How can I assist you today?")
-        continue
-    elif question in thanks:
-        print("You're welcome!")
-        continue
-
-
     else:
 
 
