@@ -100,7 +100,7 @@ while True:
     else:
         res = agent_executer.invoke({"input" :question})
         
-        print(res)
+        print(res["output"])
 
 
         
