@@ -47,6 +47,8 @@ qa_prompt = PromptTemplate(
     input_variables=["context","question"]
 )
 
+print("Knowledge Assistant ready! Type 'exit' to quit.")
+
 while True:
     question = input("Ask Question: ").strip()
     if question.lower() in ["exit","quit"]:
