@@ -88,7 +88,7 @@ while True:
         break
     
     else:
-        res = doc_qa_tool(question)
+        res = agent_executer.invoke(question)
         print(res)
 
 
