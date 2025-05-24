@@ -40,8 +40,8 @@ def my_docs(folder_path):
 doc = my_docs("docs")
 
 # Text splitting
-text_spiltter = RecursiveCharacterTextSplitter(chunk_size=1000,chunk_overlap=100)
-chunks = text_spiltter.split_documents(doc)
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000,chunk_overlap=100)
+chunks = text_splitter.split_documents(doc)
 
 # Embeddings and Vector store creation
 embeddings = HuggingFaceEmbeddings()
@@ -63,12 +63,13 @@ def doc_qa_tool(question:str)->str:
 
     # prompt template for answering questions using the context
     qa_prompt = PromptTemplate(
-    template='''You are a helpfull AI assistant. Answer the question from the following context.
-                if context is insufficient just say, I don;t Know.
-                Context:{context}
-                Question:{question}
-                Answer: ''',
-                input_variables=["context","question"])
+    template='''Yor are a helpfull AI assistant. Answer the question from the following context.
+    If the answer is not present in the context, respond with: "The answer is not available in the provided context.
+            
+    Context:{context}
+    Question:{question}
+    Answer: ''',
+    input_variables=["context","question"])
 
     # Format the prompt 
     final_prompt = qa_prompt.invoke({"context":context,"question":question})
@@ -118,6 +119,4 @@ while True:
    
         
         
-
-
 
