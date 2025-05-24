@@ -60,17 +60,24 @@ def doc_qa_tool(question:str)->str:
     response = llm.invoke(finla_prompt)
     return response.content
 
+@tool
+def weather(city:str)->str:
+    "Provides weather information for the given city."
+    return f"The current temperature in {city} is 25°C."
+
+search_tool = DuckDuckGoSearchRun()
+
 prompt = hub.pull("hwchase17/react")
 
 agent = create_react_agent(
     llm=llm,
-    tools=[doc_qa_tool],
+    tools=[doc_qa_tool,weather,search_tool],
     prompt=prompt
 )
 
 agent_executer = AgentExecutor(
     agent=agent,
-    tools=[doc_qa_tool],
+    tools=[doc_qa_tool,weather,search_tool],
     verbose=True
 )
 
