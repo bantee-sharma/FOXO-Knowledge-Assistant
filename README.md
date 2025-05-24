@@ -34,6 +34,8 @@ git clone https://github.com/bantee-sharma/knowledge-assistant.git
 cd knowledge-assistant
 
 
+
+
 2. **Create and activate a virtual environment (optional but recommended):**
 
     python3 -m venv venv
