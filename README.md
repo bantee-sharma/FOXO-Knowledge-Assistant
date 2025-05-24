@@ -28,11 +28,15 @@ An intelligent AI assistant that answers questions based on your local documents
    cd knowledge-assistant
 
 2. **Create and activate a virtual environment (optional but recommended):**
+
     python3 -m venv venv
+
    
     source venv/bin/activate   # On Linux/macOS
+
    
     venv\Scripts\activate      # On Windows
+   
 
 4. **Install the required Python packages:**
     pip install -r requirements.txt
