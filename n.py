@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 from langchain_community.tools import DuckDuckGoSearchRun,tool
 from langchain.agents import create_react_agent,AgentExecutor
 from langchain import hub
-from langchain.memory import ConversationBufferMemory
 
 load_dotenv()
 
@@ -18,7 +17,7 @@ def my_docs(folder_path):
     all_documents = []
 
     for file in Path(folder_path).glob("*"):
-        if file.suffix == ".pdf":
+        if file.suffix == ".pdf":   
             loader = PyMuPDFLoader(str(file))
         elif file.suffix == ".txt":
             loader = TextLoader(str(file),encoding="utf-8")
@@ -27,8 +26,8 @@ def my_docs(folder_path):
         else:
             continue
 
-    documents = loader.load()
-    all_documents.extend(documents)
+        documents = loader.load()
+        all_documents.extend(documents)
 
     return all_documents
 
@@ -80,7 +79,6 @@ agent_executer = AgentExecutor(
     agent=agent,
     tools=[doc_qa_tool,weather,search_tool],
     verbose=True,
-    memory=ConversationBufferMemory(memory_key="chat_history", return_messages=True)
 )
 
 
