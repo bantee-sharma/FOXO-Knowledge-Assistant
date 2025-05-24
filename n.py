@@ -41,6 +41,7 @@ retriever = vector_store.as_retriever(search_type="similarity",kwargs={"k":3})
 
 qa_prompt = PromptTemplate(
     template='''Yor are a helpfull AI assistant. Answer the question from the following context.
+    If the answer is not present in the context, respond with: "The answer is not available in the provided context.
     Context: {context}
     Question: {question}
     Answer: ''',
