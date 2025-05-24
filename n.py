@@ -88,7 +88,7 @@ while True:
         break
     
     else:
-        res = agent_executer.invoke(question)
+        res = agent_executer.invoke({"input" :question})
         print(res)
 
 
