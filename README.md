@@ -1,31 +1,38 @@
-# AI-Powered Knowledge Assistant
+# 🤖 AI-Powered Knowledge Assistant
 
-An intelligent AI assistant that answers questions based on your local documents using Retrieval-Augmented Generation (RAG), with additional tool integrations for web search and weather information.
-
----
-
-## Features
-
-- Load and process documents in **PDF**, **TXT**, and **DOCX** formats
-- Split documents into manageable chunks for better semantic search
-- Use **FAISS** vector store and **HuggingFace embeddings** for document retrieval
-- Generate responses using **Google Gemini 2.0 Flash** (via LangChain Google Generative AI)
-- Tool-based architecture with LangChain agents:
-  - **Document QA tool:** Answers questions using uploaded documents
-  - **Weather tool:** Provides current temperature for a given city
-  - **DuckDuckGo Search tool:** Performs web searches when local context is insufficient
-- Intelligent tool selection based on question context using LangChain React agent framework
-- Command-line interface (CLI) for interactive question and answer sessions
+An intelligent assistant that answers questions based on your **local documents** using **Retrieval-Augmented Generation (RAG)**, with tool integrations for **web search** and **weather information**.
 
 ---
 
-## Setup Instructions
+## 🔍 Features
 
-1. **Clone the repository:**
+- 📄 Load and process documents in **PDF, TXT, and DOCX** formats
+- ✂️ Split documents into manageable chunks for better semantic search
+- 🧠 Use **FAISS vector store** and **HuggingFace embeddings** for document retrieval
+- ⚡ Generate answers using **Google Gemini 2.0 Flash** via LangChain's Generative AI interface
+- 🛠️ Built with **LangChain Agents** using a ReAct-based tool architecture
 
-   ```bash
-   git clone https://github.com/bantee-sharma/knowledge-assistant.git
-   cd knowledge-assistant
+### 🚀 Tools Included
+
+- **Document QA Tool** – Answers questions using your uploaded documents
+- **Weather Tool** – Provides current temperature for a given city
+- **DuckDuckGo Search Tool** – Performs web search if the local context is insufficient
+- 🧠 Intelligent tool selection based on question context using LangChain’s ReAct agent framework
+
+### 💬 Interface
+
+- CLI (Command Line Interface) for interactive Q&A sessions
+
+---
+
+## 🛠️ Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/bantee-sharma/knowledge-assistant.git
+cd knowledge-assistant
+
 
 2. **Create and activate a virtual environment (optional but recommended):**
 
