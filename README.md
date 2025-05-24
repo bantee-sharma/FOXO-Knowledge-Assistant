@@ -35,36 +35,50 @@ cd knowledge-assistant
 ```
 
 
-
-2. **Create and activate a virtual environment (optional but recommended):**
-
-# On Linux/macOS
-
+## 2.Create and activate a virtual environment (optional but recommended):
+**On Linux/macOS**
+```bash
 python3 -m venv venv
 
 source venv/bin/activate
+```
 
 
-# On Windows
-
+**On Windows**
+```bash
 python -m venv venv
 
 venv\Scripts\activate
-   
+```
 
-4. **Install the required Python packages:**
-    pip install -r requirements.txt
+## 4.Install the required Python packages:
+```bash
+pip install -r requirements.txt
+```
 
-5. **Set up environment variables:**
-   Create a .env file in the root directory and add your API keys or configuration, for example:
+## 5.Set up environment variables:
+   **Create a .env file in the root directory and add your API keys or configuration, for example:**
+```bash
+GOOGLE_API_KEY=your_google_api_key_here
+```
 
-   GOOGLE_API_KEY=your_google_api_key_here
+## 6.Run the assistant:
+```bash
+python main.py
+```
+## 7.How to Use
+**Ask your question directly in the command line after launching the app**
 
-6. **Run the assistant:**
-   python main.py
+**Type exit or quit to end the session**
 
-7. **Interact with the assistant in the command line. Type your question and press Enter. Type exit or quit to stop.**
-   
-
+## 📁 Example Folder Structure
+```bash
+knowledge-assistant/
+├── docs/                  # Folder to store your local documents (PDF, TXT, DOCX)
+├── main.py                # Main script file
+├── .env                   # Environment variable file
+├── requirements.txt       # Python dependencies
+└── README.md              # This file
+```
 
 
