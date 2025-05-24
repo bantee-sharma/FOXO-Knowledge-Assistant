@@ -29,21 +29,23 @@ An intelligent AI assistant that answers questions based on your local documents
 
 2. **Create and activate a virtual environment (optional but recommended):**
     python3 -m venv venv
+   
     source venv/bin/activate   # On Linux/macOS
+   
     venv\Scripts\activate      # On Windows
 
-3. **Install the required Python packages:**
+4. **Install the required Python packages:**
     pip install -r requirements.txt
 
-4. **Set up environment variables:**
+5. **Set up environment variables:**
    Create a .env file in the root directory and add your API keys or configuration, for example:
 
    GOOGLE_API_KEY=your_google_api_key_here
 
-5. **Run the assistant:**
+6. **Run the assistant:**
    python main.py
 
-6. **Interact with the assistant in the command line. Type your question and press Enter. Type exit or quit to stop.**
+7. **Interact with the assistant in the command line. Type your question and press Enter. Type exit or quit to stop.**
    
 
 
